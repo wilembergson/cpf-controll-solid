@@ -25,7 +25,7 @@ export namespace Cpf {
         createdAt: string
     }
     export type State = {
-        id?: string
+        id: string
         cpf: string
         createdAt: string
     }
