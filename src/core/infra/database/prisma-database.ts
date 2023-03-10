@@ -21,3 +21,5 @@ export class PrismaDatabase implements Database<PrismaClient> {
     }
     
 }
+
+export const prismaConnection = new PrismaDatabase()

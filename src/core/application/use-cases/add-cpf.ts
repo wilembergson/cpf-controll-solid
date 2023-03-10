@@ -3,11 +3,11 @@ import { RepositoryFactory } from "../../domain/factories";
 import { CpfRepository } from "../../domain/repositories";
 import { AddCpf } from "./contracts";
 
-export class AddCpfCase implements AddCpf{
+export class AddCpfUsecase implements AddCpf{
     private readonly cpfRepository: CpfRepository
 
     constructor( repositoryFactory: RepositoryFactory) {
-        this.cpfRepository = repositoryFactory.createCpfRepository()
+        this.cpfRepository = repositoryFactory.cpfRepository()
     }
     async execute(input: AddCpf.Input): Promise<AddCpf.Output> {
         const cpf = new Cpf(input)

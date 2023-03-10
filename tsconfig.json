@@ -1,12 +1,16 @@
 {
-    "compilerOptions": {
-      "outDir": "./dist",
-      "module": "commonjs",
-      "target": "es2019",
-      "esModuleInterop": true,
-      "allowJs": true
-    },
-    "ts-node": {
-      "esm": true
-    }
-  }
+  "compilerOptions": {
+    "outDir": "./dist",
+    "module": "CommonJS",
+    "target": "es2019",
+    "esModuleInterop": true,
+    "allowJs": true
+  },
+  "ts-node": {
+    "esm": true
+  },
+  "rootDirs": [
+    "src",
+    "tests"
+  ]
+}
