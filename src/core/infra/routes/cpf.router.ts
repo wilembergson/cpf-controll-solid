@@ -1,11 +1,10 @@
 import { Router } from "express";
-import { cpfController } from "../factories/cpf-controller-factory";
-import { ExpressRouter } from "../protocols/express-router";
-import { adaptRoute } from "../adapters/express-route-adapter";
+import addCpfControllerFactory from "../factories/controllers/add-cpf-controller-factory";
+import { adaptRoute } from "../adapters/route-adapter";
 
 const cpfRouter = Router()
 
-cpfRouter.post('/cpf', adaptRoute(cpfController))
+cpfRouter.post('/cpf', adaptRoute(addCpfControllerFactory()))
 
 export default cpfRouter
 

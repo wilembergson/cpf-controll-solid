@@ -1,7 +1,7 @@
-import expressApp from "./express-app"
 import dotenv from "dotenv"
+import app from "./core/infra/config/app"
 
 const PORT = process.env.PORT
 dotenv.config()
 
-expressApp.listen(PORT, ()=> console.log(`Running on port ${PORT}...`))
+app.listen(PORT, () => console.log(`Running on port ${PORT}...`))

@@ -1,10 +1,10 @@
 
-import { prismaConnection } from "../../database/prisma-database"
+import { connection } from "../../database/connection-database"
 
 export const MongoHelper = {
-  prismaConnection,
+  prismaConnection: connection,
   async connect(): Promise<void> {
-    await prismaConnection.getConnection()
+    await connection.getConnection()
   },
 
   async disconnect(): Promise<void> {

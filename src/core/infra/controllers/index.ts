@@ -1,1 +1,1 @@
-export * from './cpf.controller'
+export * from './add-cpf.controller'
