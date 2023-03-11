@@ -6,8 +6,8 @@ export class CpfFormatValidation implements Validation{
         private readonly cpfValidator: CpfValidator
     ){}
 
-    async validate(input: any): Promise<Error> {
-        const isValid = await this.cpfValidator.isValid(input.body.cpf)
+    async validate(input: string): Promise<Error> {
+        const isValid = this.cpfValidator.isValid(input)
         if(!isValid) return new InvalidCpfException()
     }
     

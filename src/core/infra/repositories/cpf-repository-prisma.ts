@@ -3,7 +3,9 @@ import { CpfRepository } from "../../domain/repositories";
 import { ConnectionDatabase } from "../database/connection-database";
 
 export class CpfRepositoryPrisma implements CpfRepository {
-    constructor(private readonly database: ConnectionDatabase) { }
+    constructor(
+        private readonly database: ConnectionDatabase
+    ) { }
 
     async add(data: Cpf): Promise<void> {
         const { id, cpf, createdAt } = data.getState()
@@ -14,4 +16,11 @@ export class CpfRepositoryPrisma implements CpfRepository {
         })
     }
 
+    async check(data: string): Promise<Cpf.State> {
+        return await this.database.getConnection().cpf.findFirst({
+            where: {
+                cpf: data
+            }
+        })
+    }
 }
