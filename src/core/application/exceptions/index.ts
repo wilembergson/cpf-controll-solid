@@ -1,0 +1,6 @@
+export * from './invalid-param-exception'
+export * from './invalid-cpf-exception'
+export * from './missing-param-exception'
+export * from './server-exception'
+export * from './unauthorized-exception'
+export * from './access-denied-exception'

@@ -1,12 +1,17 @@
-import { AddCpfUsecase } from "../../application/use-cases";
-import { noContent, serverError } from "../helpers/http/http-helper";
-import { Controller, HttpRequest, HttpResponse } from "../protocols";
+import { AddCpf } from "../../domain/use-cases";
+import { badRequest, noContent, serverError } from "../helpers/http/http-helper";
+import { Controller, HttpRequest, HttpResponse, Validation } from "../protocols";
 
-export class AddCpfController implements Controller{
-    constructor(private readonly addCpfUsecase: AddCpfUsecase) { }
+export class AddCpfController implements Controller {
+    constructor(
+        private readonly validation: Validation,
+        private readonly addCpfUsecase: AddCpf
+        ) { }
 
     async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
         try {
+            const error = await this.validation.validate(httpRequest)
+            if (error) return badRequest(error)
             const { cpf } = httpRequest.body
             await this.addCpfUsecase.execute({
                 cpf,

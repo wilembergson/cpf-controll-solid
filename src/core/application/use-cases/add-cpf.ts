@@ -1,7 +1,7 @@
 import { Cpf } from "../../domain/entities";
 import { RepositoryFactory } from "../../domain/factories";
 import { CpfRepository } from "../../domain/repositories";
-import { AddCpf } from "./contracts";
+import { AddCpf } from "../../domain/use-cases";
 
 export class AddCpfUsecase implements AddCpf{
     private readonly cpfRepository: CpfRepository
