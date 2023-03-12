@@ -1,4 +1,4 @@
-import { CpfValidator, Validation } from "../../infra/protocols";
+import { CpfValidator, HttpRequest, Validation } from "../../infra/protocols";
 import { InvalidCpfException } from "../exceptions";
 
 export class CpfFormatValidation implements Validation{
@@ -6,8 +6,8 @@ export class CpfFormatValidation implements Validation{
         private readonly cpfValidator: CpfValidator
     ){}
 
-    async validate(input: string): Promise<Error> {
-        const isValid = this.cpfValidator.isValid(input)
+    async validate(input: HttpRequest): Promise<Error> {
+        const isValid = this.cpfValidator.isValid(input.body.cpf)
         if(!isValid) return new InvalidCpfException()
     }
     

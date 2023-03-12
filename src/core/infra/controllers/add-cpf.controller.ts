@@ -11,7 +11,7 @@ export class AddCpfController implements Controller {
     async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
         try {
             const { cpf } = httpRequest.body
-            const error = await this.validation.validate(cpf)
+            const error = await this.validation.validate(httpRequest)
             if (error) return badRequest(error)
             await this.addCpfUsecase.execute({
                 cpf,

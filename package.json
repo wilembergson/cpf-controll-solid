@@ -17,6 +17,7 @@
     "@ngneat/falso": "^6.4.0",
     "@prisma/client": "^4.10.1",
     "cors": "^2.8.5",
+    "cpf": "^2.0.1",
     "cpf-cnpj-validator": "^1.0.3",
     "dotenv": "^16.0.3",
     "dotenv-cli": "^6.0.0",

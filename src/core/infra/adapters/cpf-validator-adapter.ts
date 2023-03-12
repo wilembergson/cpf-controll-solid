@@ -1,9 +1,12 @@
 import { CpfValidator } from "../protocols";
-import {cpf} from 'cpf-cnpj-validator'
+import cpf  from 'cpf'
 
-export class CpfValidatorAdapter implements CpfValidator{
+const cpfRegex = /^\d{11}$/;
+
+export class CpfValidatorAdapter implements CpfValidator {
+    
     isValid(value: string): boolean {
-        return cpf.isValid(value)
+        return (cpfRegex.test(value) && cpf.isValid(value))
     }
 
 }
