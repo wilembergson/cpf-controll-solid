@@ -10,6 +10,11 @@ export class CheckCpfUsecase implements CheckCpf {
     }
 
     async execute(input: string): Promise<CheckCpf.Output> {
-        return await this.cpfRepository.check(input)
+        const result = await this.cpfRepository.check(input)
+        if(!result) return null
+        return {
+            cpf: result.cpf,
+            createdAt: result.createdAt
+        }
     }
 }
