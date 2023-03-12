@@ -6,7 +6,8 @@ export class CpfRepositoryPrisma implements CpfRepository {
     constructor(
         private readonly database: ConnectionDatabase
     ) { }
-
+    
+    
     async add(data: Cpf): Promise<void> {
         const { id, cpf, createdAt } = data.getState()
         await this.database.getConnection().cpf.upsert({
@@ -15,9 +16,17 @@ export class CpfRepositoryPrisma implements CpfRepository {
             update: { cpf, createdAt }
         })
     }
-
+    
     async check(data: string): Promise<Cpf.State> {
         return await this.database.getConnection().cpf.findFirst({
+            where: {
+                cpf: data
+            }
+        })
+    }
+    
+    async delete(data: string): Promise<void> {
+        await this.database.getConnection().cpf.delete({
             where: {
                 cpf: data
             }

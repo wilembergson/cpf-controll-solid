@@ -16,6 +16,13 @@ export class Cpf {
             createdAt: this.createdAt
         }
     }
+
+    getStateWithoutID(): Cpf.StateWithoutId {
+        return {
+            cpf: this.cpf,
+            createdAt: this.createdAt
+        }
+    }
 }
 
 export namespace Cpf {
@@ -26,6 +33,10 @@ export namespace Cpf {
     }
     export type State = {
         id: string
+        cpf: string
+        createdAt: string
+    }
+    export type StateWithoutId = {
         cpf: string
         createdAt: string
     }
