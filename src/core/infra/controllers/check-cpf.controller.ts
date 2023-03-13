@@ -10,9 +10,9 @@ export class CheckCpfController implements Controller {
 
     async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
         try {
-            const { cpf } = httpRequest.params
             const error = await this.validation.validate(httpRequest)
             if (error) return badRequest(error)
+            const { cpf } = httpRequest.params
             const result = await this.checkCpfUsecase.execute(cpf)
             return ok(result)
         } catch (error) {
