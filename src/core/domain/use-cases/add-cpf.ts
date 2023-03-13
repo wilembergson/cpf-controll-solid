@@ -5,7 +5,6 @@ export interface AddCpf {
 export namespace AddCpf {
     export type Input = {
         cpf: string
-        createdAt: string
     }
     export type Output = {
         id: string

@@ -10,7 +10,10 @@ export class AddCpfUsecase implements AddCpf{
         this.cpfRepository = repositoryFactory.cpfRepository()
     }
     async execute(input: AddCpf.Input): Promise<AddCpf.Output> {
-        const cpf = new Cpf(input)
+        const cpf = new Cpf({
+            cpf: input.cpf,
+            createdAt: (new Date).toISOString()
+        })
         await this.cpfRepository.add(cpf)
         return cpf.getState()
     }

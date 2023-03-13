@@ -4,7 +4,7 @@ export interface CheckCpf {
 
 export namespace CheckCpf {
     export type Output = {
-        cpf:string
-        createdAt:string
+        cpf: string
+        createdAt: string
     }
 }

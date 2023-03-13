@@ -7,6 +7,10 @@ export class CpfRepositoryPrisma implements CpfRepository {
         private readonly database: ConnectionDatabase
     ) { }
     
+    async listAll(): Promise<Cpf.State[]> {
+        return await this.database.getConnection().cpf.findMany({})
+    }
+    
     
     async add(data: Cpf): Promise<void> {
         const { id, cpf, createdAt } = data.getState()
