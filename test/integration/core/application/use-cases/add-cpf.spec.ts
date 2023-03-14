@@ -15,8 +15,8 @@ describe('AddCpf', () => {
         sut = new AddCpfUsecase(repositoryFactory)
     })
 
-    afterAll(() => {
-        connection.clearStorage('cpf')
+    afterAll(async () => {
+        await connection.clearStorage('cpf')
         connection.close()
     })
     
