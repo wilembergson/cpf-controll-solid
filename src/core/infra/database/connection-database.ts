@@ -20,6 +20,13 @@ export class ConnectionDatabase implements Database<PrismaClient> {
         return this.instance
     }
 
+    async clearStorage (table:string): Promise<void> {
+        const keys = await this.client[table].deleteMany()
+      }
+
+    close(): void {
+        this.client.$disconnect()
+    }
 }
 
 export const connection = new ConnectionDatabase()
