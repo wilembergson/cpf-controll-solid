@@ -11,7 +11,6 @@ export class ListAllCpfUsecase implements ListAllCpf {
     }
     async execute(): Promise<Cpf.StateWithoutId[]> {
         const result = await this.cpfRepository.listAll()
-        //if(!result) return []
         const list = result.map(item => {
             const newCpf = new Cpf(item)
             return newCpf.getStateWithoutID()

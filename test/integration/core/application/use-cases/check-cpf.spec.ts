@@ -5,7 +5,7 @@ import { ConnectionDatabase } from "../../../../../src/core/infra/database/conne
 import { PrismaRepositoryFactory } from "../../../../../src/core/infra/factories/repositories/prisma-repository-factory"
 import { faker } from "@faker-js/faker"
 
-describe('AddCpf', () => {
+describe('CheckCpf', () => {
     let connection: ConnectionDatabase
     let repositoryFactory: PrismaRepositoryFactory
     let sut: CheckCpf
