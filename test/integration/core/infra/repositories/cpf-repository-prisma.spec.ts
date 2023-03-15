@@ -1,8 +1,8 @@
 import { faker } from "@faker-js/faker"
-import { Cpf } from "../../../../src/core/domain/entities"
-import { CpfRepository } from "../../../../src/core/domain/repositories"
-import { ConnectionDatabase } from "../../../../src/core/infra/database/connection-database"
-import { CpfRepositoryPrisma } from "../../../../src/core/infra/repositories"
+import { Cpf } from "../../../../../src/core/domain/entities"
+import { CpfRepository } from "../../../../../src/core/domain/repositories"
+import { ConnectionDatabase } from "../../../../../src/core/infra/database/connection-database"
+import { CpfRepositoryPrisma } from "../../../../../src/core/infra/repositories"
 import { generate } from "cpf"
 
 describe('CpfRepositoryPrisma', () => {
