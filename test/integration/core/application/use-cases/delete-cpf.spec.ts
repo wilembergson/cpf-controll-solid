@@ -1,14 +1,14 @@
 import { generate } from "cpf"
-import { ListAllCpfUsecase } from "../../../../../src/core/application/use-cases"
-import { ListAllCpf } from "../../../../../src/core/domain/use-cases"
+import { DeleteCpfUsecase, ListAllCpfUsecase } from "../../../../../src/core/application/use-cases"
+import { DeleteCpf } from "../../../../../src/core/domain/use-cases"
 import { ConnectionDatabase } from "../../../../../src/core/infra/database/connection-database"
 import { PrismaRepositoryFactory } from "../../../../../src/core/infra/factories/repositories/prisma-repository-factory"
 import { Cpf } from "../../../../../src/core/domain/entities"
 
-describe('ListAllCpf', () => {
+describe('DeleteCpf', () => {
     let connection: ConnectionDatabase
     let repositoryFactory: PrismaRepositoryFactory
-    let sut: ListAllCpf
+    let sut: DeleteCpf
 
     function makeCpf() {
         const cpf = new Cpf({
@@ -21,7 +21,7 @@ describe('ListAllCpf', () => {
     beforeAll(() => {
         connection = new ConnectionDatabase()
         repositoryFactory = new PrismaRepositoryFactory()
-        sut = new ListAllCpfUsecase(repositoryFactory)
+        sut = new DeleteCpfUsecase(repositoryFactory)
     })
 
     afterEach(async () => {
@@ -32,21 +32,16 @@ describe('ListAllCpf', () => {
         connection.close()
     })
 
-    it('should get the list of registred cpf', async () => {
-        const cpfList = [makeCpf(), makeCpf()]
-        await connection.getConnection().cpf.createMany({
-            data: cpfList
+    it('should delete a registred cpf', async () => {
+        const cpfData = await connection.getConnection().cpf.create({
+            data: makeCpf()
         })
-        const response = await sut.execute()
-        const result = cpfList.map(item => {
-            const { id, ...cpfItem } = Object.assign({}, { ...item })
-            return cpfItem
+        await sut.execute(cpfData.cpf)
+        const response = await connection.getConnection().cpf.findFirst({
+            where:{
+                cpf:cpfData.cpf
+            }
         })
-        expect(response).toStrictEqual(result)
-    })
-
-    it('should return an empty list if there are no cpf registred', async () => {
-        const response = await sut.execute()
-        expect(response).toEqual([])
+        expect(response).toBeNull()
     })
 })

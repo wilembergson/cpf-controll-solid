@@ -13,13 +13,6 @@ export class ConnectionDatabase implements Database<PrismaClient> {
         return this.client
     }
 
-    static getInstance(): ConnectionDatabase {
-        if (!this.instance) {
-            this.instance = new ConnectionDatabase()
-        }
-        return this.instance
-    }
-
     async clearStorage (table:string): Promise<void> {
         const keys = await this.client[table].deleteMany()
       }
