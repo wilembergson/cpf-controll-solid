@@ -1,7 +1,15 @@
+import { ExpressApp } from "./core/infra/config"
 import dotenv from "dotenv"
-import app from "./core/infra/config/app"
 
-const PORT = process.env.PORT
 dotenv.config()
 
-app.listen(PORT, () => console.log(`Running on port ${PORT}...`))
+async function Bootstrap(): Promise<void> {
+    const app = new ExpressApp()
+    await app.init()
+}
+
+Bootstrap().catch((error) => {
+    console.log(error);
+    process.exit(1)
+  });
+  

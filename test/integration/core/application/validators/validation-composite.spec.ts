@@ -1,5 +1,3 @@
-import { faker } from "@faker-js/faker"
-import { MissingParamError } from "../../../../../src/core/application/exceptions"
 import { ValidationComposite } from "../../../../../src/core/application/validators"
 import { HttpRequest, Validation } from "../../../../../src/core/infra/protocols"
 import { generate } from "cpf"

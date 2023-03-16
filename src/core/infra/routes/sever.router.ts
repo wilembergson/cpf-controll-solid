@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { ExpressRouter } from "../protocols/express-router";
 import cpfRouter  from "./cpf.router";
 
 const serverRouter = Router()
