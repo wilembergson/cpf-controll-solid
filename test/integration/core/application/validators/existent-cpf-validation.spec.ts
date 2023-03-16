@@ -1,8 +1,7 @@
 import { faker } from "@faker-js/faker";
-import { RequiredFieldValidation } from "../../../../../src/core/application/validators/required-field-validation";
 import { HttpRequest } from "../../../../../src/core/infra/protocols";
-import { ExistsCpfException, MissingParamError, NotFoundCpfException } from "../../../../../src/core/application/exceptions";
-import { ExistentCpfValidation, NotFoundCpfValidation } from "../../../../../src/core/application/validators";
+import { ExistsCpfException } from "../../../../../src/core/application/exceptions";
+import { ExistentCpfValidation } from "../../../../../src/core/application/validators";
 import { CheckCpf } from "../../../../../src/core/domain/use-cases";
 import { ConnectionDatabase } from "../../../../../src/core/infra/database/connection-database";
 import { PrismaRepositoryFactory } from "../../../../../src/core/infra/factories/repositories/prisma-repository-factory";

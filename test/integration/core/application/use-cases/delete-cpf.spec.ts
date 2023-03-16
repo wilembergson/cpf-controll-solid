@@ -1,5 +1,5 @@
 import { generate } from "cpf"
-import { DeleteCpfUsecase, ListAllCpfUsecase } from "../../../../../src/core/application/use-cases"
+import { DeleteCpfUsecase } from "../../../../../src/core/application/use-cases"
 import { DeleteCpf } from "../../../../../src/core/domain/use-cases"
 import { ConnectionDatabase } from "../../../../../src/core/infra/database/connection-database"
 import { PrismaRepositoryFactory } from "../../../../../src/core/infra/factories/repositories/prisma-repository-factory"
