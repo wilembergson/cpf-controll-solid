@@ -7,7 +7,7 @@ import { Cpf } from "../../src/core/domain/entities";
 
 
 
-describe('DELETE /cpf', () => {
+describe('DELETE /cpf/:cpf', () => {
     const app = supertest(new ExpressApp().getInstance)
     const connection = new ConnectionDatabase()
 
@@ -31,7 +31,6 @@ describe('DELETE /cpf', () => {
         await connection.clearStorage('cpf')
     })
     afterAll(async () => {
-        await connection.clearStorage('cpf')
         connection.close()
     })
 

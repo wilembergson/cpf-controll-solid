@@ -7,7 +7,7 @@ import { Cpf } from "../../src/core/domain/entities";
 
 
 
-describe('GET /cpf/:cpf', () => {
+describe('GET /cpf', () => {
     const app = supertest(new ExpressApp().getInstance)
     const connection = new ConnectionDatabase()
 
@@ -18,7 +18,7 @@ describe('GET /cpf/:cpf', () => {
     async function addCpf(cpf: string): Promise<Cpf.StateWithoutId> {
         const newCpf = new Cpf({
             id: faker.datatype.uuid(),
-            cpf: cpf,
+            cpf,
             createdAt: (new Date).toISOString()
         })
         await connection.getConnection().cpf.create({
@@ -35,15 +35,19 @@ describe('GET /cpf/:cpf', () => {
     })
 
     it('[200]:should get a registred cpf', async () => {
-        const cpf = generateCpf()
-        const savedCpf = await addCpf(cpf)
-        const response = await app.get(`/cpf/${cpf}`)
-        expect(response.body).toEqual(savedCpf)
+        const cpf1 = generateCpf()
+        const cpf2 = generateCpf()
+        const savedCpf1 = await addCpf(cpf1)
+        const savedCpf2 = await addCpf(cpf2)
+        const response = await app.get(`/cpf`)
+        expect(response.body.length).toBe(2)
+        expect(response.body[0]).toEqual(savedCpf1)
+        expect(response.body[1]).toEqual(savedCpf2)
     })
 
-    it('[400]:should throw error getting an unregistred cpf', async () => {
-        const cpf = generateCpf()
-        const response = await app.get(`/cpf/${cpf}`)
-        expect(response.status).toEqual(400)
+    it('[200]:should get a registred cpf', async () => {
+        const response = await app.get(`/cpf`)
+        expect(response.body.length).toBe(0)
+        expect(response.body).toEqual([])
     })
 })
