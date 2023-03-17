@@ -7,7 +7,7 @@ import { Cpf } from "../../src/core/domain/entities";
 
 
 
-describe('GET /cpf', () => {
+describe('DELETE /cpf', () => {
     const app = supertest(new ExpressApp().getInstance)
     const connection = new ConnectionDatabase()
 
@@ -35,16 +35,16 @@ describe('GET /cpf', () => {
         connection.close()
     })
 
-    it('[200]:should get a registred cpf', async () => {
+    it('[200]:should delete a registred cpf', async () => {
         const cpf = generateCpf()
         const savedCpf = await addCpf(cpf)
-        const response = await app.get(`/cpf/${cpf}`)
-        expect(response.body).toEqual(savedCpf)
+        const response = await app.delete(`/cpf/${cpf}`)
+        expect(response.status).toEqual(200)
     })
 
-    it('[400]:should throw error getting an unregistred cpf', async () => {
+    it('[400]:should throw error deleting an invalid cpf', async () => {
         const cpf = generateCpf()
-        const response = await app.get(`/cpf/${cpf}`)
+        const response = await app.delete(`/cpf/${cpf}`)
         expect(response.status).toEqual(400)
     })
 })
