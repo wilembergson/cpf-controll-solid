@@ -1,5 +1,5 @@
-import { CheckCpf, DeleteCpf } from "../../domain/use-cases";
-import { badRequest, noContent, ok, serverError } from "../helpers/http/http-helper";
+import { DeleteCpf } from "../../domain/use-cases";
+import { badRequest, ok, serverError } from "../helpers/http/http-helper";
 import { Controller, HttpRequest, HttpResponse, Validation } from "../protocols";
 
 export class DeleteCpfController implements Controller {

@@ -1,5 +1,5 @@
 import { CheckCpf } from "../../domain/use-cases";
-import { badRequest, noContent, ok, serverError } from "../helpers/http/http-helper";
+import { badRequest, ok, serverError } from "../helpers/http/http-helper";
 import { Controller, HttpRequest, HttpResponse, Validation } from "../protocols";
 
 export class CheckCpfController implements Controller {

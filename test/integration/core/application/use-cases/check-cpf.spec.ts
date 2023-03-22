@@ -15,9 +15,11 @@ describe('CheckCpf', () => {
         repositoryFactory = new PrismaRepositoryFactory()
         sut = new CheckCpfUsecase(repositoryFactory)
     })
-
+    afterEach(async () => {
+        await connection.clearStorage('cpf')        
+    })
     afterAll(async () => {
-        connection.clearStorage('cpf')
+        await connection.clearStorage('cpf')
         connection.close()
     })
     

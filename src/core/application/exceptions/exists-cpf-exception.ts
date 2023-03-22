@@ -1,6 +1,7 @@
-export class ExistsCpfException extends Error {
+import { BaseException } from "./base-exception"
+
+export class ExistsCpfException extends BaseException {
   constructor() {
-    super('CPF alread registred')
-    this.name = 'ExistsCpfException'
+    super('ExistsCpfException', 'CPF alread registred', 405)
   }
 }

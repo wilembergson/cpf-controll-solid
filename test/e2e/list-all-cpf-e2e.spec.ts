@@ -11,7 +11,7 @@ describe('GET /cpf', () => {
     const app = supertest(new ExpressApp().getInstance)
     const connection = new ConnectionDatabase()
 
-    function generateCpf(): string {
+    async function generateCpf(): Promise<string> {
         return generate().replace(/[-.]/g, "")
     }
 
@@ -30,19 +30,20 @@ describe('GET /cpf', () => {
     afterEach(async () => {
         await connection.clearStorage('cpf')
     })
-    afterAll(() => {
+    afterAll(async () => {
+        await connection.clearStorage('cpf')
         connection.close()
     })
 
     it('[200]:should get a registred cpf', async () => {
-        const cpf1 = generateCpf()
-        const cpf2 = generateCpf()
+        const cpf1 = await generateCpf()
+        const cpf2 = await generateCpf()
         const savedCpf1 = await addCpf(cpf1)
         const savedCpf2 = await addCpf(cpf2)
         const response = await app.get(`/cpf`)
-        expect(response.body.length).toBe(2)
-        expect(response.body[0]).toEqual(savedCpf1)
-        expect(response.body[1]).toEqual(savedCpf2)
+        expect(await response.body.length).toBe(2)
+        expect(await response.body[0]).toEqual(savedCpf1)
+        expect(await response.body[1]).toEqual(savedCpf2)
     })
 
     it('[200]:should get a registred cpf', async () => {

@@ -5,16 +5,16 @@ import { ExpressApp } from "../../src/core/infra/config/express-app";
 import { ConnectionDatabase } from "../../src/core/infra/database/connection-database";
 import { faker } from "@faker-js/faker";
 
-function generateCpf(): string {
+async function generateCpf(): Promise<string> {
     return generate().replace(/[-.]/g, "")
 }
 
-function makeRequest(): any {
+async function makeRequest(): Promise<any> {
     return {
-        cpf: generateCpf()
+        cpf: generate().replace(/[-.]/g, "")
     }
 }
-function makeInvalidRequest(): any {
+async function makeInvalidRequest(): Promise<any> {
     return {
         cpf: faker.datatype.string(11)
     }
@@ -33,12 +33,12 @@ describe('POST /cpf', () => {
     })
 
     it('[200]:should be able to add a new cpf', async () => {
-        const response = await app.post("/cpf").send(makeRequest())
+        const response = await app.post("/cpf").send(await makeRequest())
         expect(response.statusCode).toEqual(204)
     })
 
     it('[400]:should throw to add an invalid cpf', async () => {
-        const response = await app.post("/cpf").send(makeInvalidRequest())
+        const response = await app.post("/cpf").send(await makeInvalidRequest())
         expect(response.statusCode).toEqual(400)
     })
 })

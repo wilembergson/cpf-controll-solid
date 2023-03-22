@@ -1,6 +1,7 @@
-export class NotFoundCpfException extends Error {
+import { BaseException } from "./base-exception";
+
+export class NotFoundCpfException extends BaseException {
   constructor() {
-    super('CPF not found')
-    this.name = 'NotFoundCpfException'
+    super('NotFoundCpfException', 'CPF not found', 404)
   }
 }

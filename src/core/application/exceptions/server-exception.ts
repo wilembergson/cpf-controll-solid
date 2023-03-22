@@ -1,7 +1,7 @@
-export class ServerError extends Error {
+import { BaseException } from "./base-exception"
+
+export class ServerError extends BaseException {
   constructor(stack: string) {
-    super('Internal server error')
-    this.name = 'ServerError'
-    this.stack = stack
+    super('ServerError', 'Internal server error', 500, stack)
   }
 }

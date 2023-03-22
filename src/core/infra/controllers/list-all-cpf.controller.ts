@@ -1,6 +1,6 @@
 import { ListAllCpf } from "../../domain/use-cases";
-import { badRequest, noContent, ok, serverError } from "../helpers/http/http-helper";
-import { Controller, HttpRequest, HttpResponse, Validation } from "../protocols";
+import { ok, serverError } from "../helpers/http/http-helper";
+import { Controller, HttpRequest, HttpResponse } from "../protocols";
 
 export class ListAllCpfController implements Controller {
     constructor(

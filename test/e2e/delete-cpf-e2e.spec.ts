@@ -11,7 +11,7 @@ describe('DELETE /cpf/:cpf', () => {
     const app = supertest(new ExpressApp().getInstance)
     const connection = new ConnectionDatabase()
 
-    function generateCpf(): string {
+    async function generateCpf(): Promise<string> {
         return generate().replace(/[-.]/g, "")
     }
 
@@ -31,18 +31,19 @@ describe('DELETE /cpf/:cpf', () => {
         await connection.clearStorage('cpf')
     })
     afterAll(async () => {
+        await connection.clearStorage('cpf')
         connection.close()
     })
 
     it('[200]:should delete a registred cpf', async () => {
-        const cpf = generateCpf()
+        const cpf = await generateCpf()
         const savedCpf = await addCpf(cpf)
         const response = await app.delete(`/cpf/${cpf}`)
         expect(response.status).toEqual(200)
     })
 
     it('[400]:should throw error deleting an invalid cpf', async () => {
-        const cpf = generateCpf()
+        const cpf = await generateCpf()
         const response = await app.delete(`/cpf/${cpf}`)
         expect(response.status).toEqual(400)
     })
