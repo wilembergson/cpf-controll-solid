@@ -5,8 +5,6 @@ import { ConnectionDatabase } from "../../src/core/infra/database/connection-dat
 import { faker } from "@faker-js/faker";
 import { Cpf } from "../../src/core/domain/entities";
 
-
-
 describe('DELETE /cpf/:cpf', () => {
     const app = supertest(new ExpressApp().getInstance)
     const connection = new ConnectionDatabase()
@@ -32,7 +30,7 @@ describe('DELETE /cpf/:cpf', () => {
     })
     afterAll(async () => {
         await connection.clearStorage('cpf')
-        connection.close()
+        await connection.close()
     })
 
     it('[200]:should delete a registred cpf', async () => {

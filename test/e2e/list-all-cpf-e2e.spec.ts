@@ -32,7 +32,7 @@ describe('GET /cpf', () => {
     })
     afterAll(async () => {
         await connection.clearStorage('cpf')
-        connection.close()
+        await connection.close()
     })
 
     it('[200]:should get a registred cpf', async () => {

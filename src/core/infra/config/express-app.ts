@@ -24,17 +24,12 @@ export class ExpressApp {
         this.app.use(this.router);
     }
 
-    public async init(): Promise<void> {
+    public async getPort(): Promise<number>{
+        return await this.app.get('port')
+    }
+
+    public async init(port?:number): Promise<void> {
         const { PORT } = process.env;
-        this.app.listen(PORT || 5000, () => console.log(`Running on port ${PORT}...`))
+        this.app.listen(port || PORT || 5000, () => console.log(`Running on port ${PORT}...`))
       }
 }
-
-/*const app = express()
-
-app.use(json())
-app.use(cors())
-
-app.use(serverRouter)
-
-export default app*/

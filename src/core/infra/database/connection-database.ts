@@ -17,8 +17,8 @@ export class ConnectionDatabase implements Database<PrismaClient> {
         const keys = await this.client[table].deleteMany()
       }
 
-    close(): void {
-        this.client.$disconnect()
+    async close(): Promise<void> {
+        await this.client.$disconnect()
     }
 }
 

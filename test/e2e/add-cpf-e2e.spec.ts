@@ -1,13 +1,9 @@
 import { generate } from "cpf";
-import { HttpRequest, Validation } from "../../src/core/infra/protocols";
 import supertest from "supertest";
 import { ExpressApp } from "../../src/core/infra/config/express-app";
 import { ConnectionDatabase } from "../../src/core/infra/database/connection-database";
 import { faker } from "@faker-js/faker";
 
-async function generateCpf(): Promise<string> {
-    return generate().replace(/[-.]/g, "")
-}
 
 async function makeRequest(): Promise<any> {
     return {
@@ -29,7 +25,7 @@ describe('POST /cpf', () => {
     })
     afterAll(async () => {
         await connection.clearStorage('cpf')
-        connection.close()
+        await connection.close()
     })
 
     it('[200]:should be able to add a new cpf', async () => {
