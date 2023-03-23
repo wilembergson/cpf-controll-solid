@@ -45,6 +45,6 @@ describe('DELETE /cpf/:cpf', () => {
     it('[400]:should throw error deleting an invalid cpf', async () => {
         const cpf = await generateCpf()
         const response = await app.delete(`/cpf/${cpf}`)
-        expect(response.status).toEqual(400)
+        expect(response.status).toEqual(404)
     })
 })

@@ -9,7 +9,7 @@
     "dev": "ts-node src/server.ts",
     "up": "docker-compose up -d",
     "down": "docker-compose down",
-    "test": "jest",
+    "test": "jest --runInBand",
     "test:cov": "npm run test -- --coverage"
   },
   "keywords": [],

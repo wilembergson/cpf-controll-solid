@@ -45,6 +45,6 @@ describe('GET /cpf/:cpf', () => {
     it('[400]:should throw error getting an unregistred cpf', async () => {
         const cpf = generateCpf()
         const response = await app.get(`/cpf/${cpf}`)
-        expect(response.status).toEqual(400)
+        expect(response.status).toEqual(422)
     })
 })

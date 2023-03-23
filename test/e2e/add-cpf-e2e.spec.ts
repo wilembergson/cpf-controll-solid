@@ -34,11 +34,11 @@ describe('POST /cpf', () => {
 
     it('[200]:should be able to add a new cpf', async () => {
         const response = await app.post("/cpf").send(await makeRequest())
-        expect(response.statusCode).toEqual(204)
+        expect(response.statusCode).toEqual(201)
     })
 
     it('[400]:should throw to add an invalid cpf', async () => {
         const response = await app.post("/cpf").send(await makeInvalidRequest())
-        expect(response.statusCode).toEqual(400)
+        expect(response.statusCode).toEqual(422)
     })
 })

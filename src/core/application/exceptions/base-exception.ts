@@ -1,4 +1,4 @@
-export abstract class BaseException extends Error {
+export class BaseException extends Error {
     constructor(
         readonly name: string,
         readonly message: string,

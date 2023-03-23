@@ -1,3 +1,4 @@
+import { BaseException } from "../../../../../src/core/application/exceptions"
 import { ValidationComposite } from "../../../../../src/core/application/validators"
 import { HttpRequest, Validation } from "../../../../../src/core/infra/protocols"
 import { generate } from "cpf"
@@ -9,8 +10,8 @@ type SutTypes = {
 
 function makeValidation(): Validation {
     class ValidationStub implements Validation {
-        async validate(input: any): Promise<Error> {
-            return new Error()
+        async validate(input: any): Promise<BaseException> {
+            return new BaseException('ExempleName', 'Exemple message', 422)
         }
     }
     return new ValidationStub()
